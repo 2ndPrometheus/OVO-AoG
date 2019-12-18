@@ -41,11 +41,11 @@ app.intent('Default Welcome Intent', async (conv) => {
     // Set the context
     conv.contexts.set('await-student-name', 1);
 
-    conv.ask('Hi, welcome to learn new things! Please, choose your username.');
+    conv.ask('Hi, welcome to learn new things!  '\n'Please, choose your username.');
     conv.ask(new BasicCard({
         text: 'Click your username or say it loud.',
-        subtitle: 'This is a subtitle',
-        title: 'Welcome to learn... ',
+        // subtitle: 'This is a subtitle',
+        title: 'Welcome to learn! ',
         image: new Image({
             url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2FOVOselfie_400x400.png?alt=media&token=94ffc74a-ce93-462e-9728-bbd06261e2ec',
             alt: 'OVObot selfie'
@@ -84,7 +84,17 @@ app.intent('Provides-Name', async (conv, params) => {
         conv.contexts.set('await-quiz-type', 1);
 
         conv.ask(`Hello ${studentName}, What would you like to practice today?`);
-        conv.ask(new Suggestions('Memo', 'Consepts', 'Clock', 'Math', 'E-Shop'));
+        conv.ask(new BasicCard({
+            text: 'Say it loud or press the button...',
+            subtitle: 'What you want practice?',
+            title: 'Choose category',
+            image: new Image({
+                url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2FOVOselfie_400x400.png?alt=media&token=94ffc74a-ce93-462e-9728-bbd06261e2ec',
+                alt: 'OVO selfie'
+            }),
+            display: 'WHITE'
+        }));
+        conv.ask(new Suggestions('Memo', 'Story', 'Clock', 'Math', 'Dialog'));
 
     } else {
 
@@ -347,11 +357,11 @@ app.intent('Provides-Answer-First', async (conv) => {
                 if (message['Image'] == 0) {
                     let m = message['Message'];
                     conv.ask(m);
-                    conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
+                    conv.ask(new Suggestions('Next', 'Menu', 'Results'));
                 } else {
                     let m = message['Message'];
                     conv.ask(m);
-                    conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
+                    conv.ask(new Suggestions('Next', 'Menu', 'Results'));
                 }
             } else {
                 conv.ask('Oh on, I encountered an error. Try agin after sometime.')
@@ -359,7 +369,7 @@ app.intent('Provides-Answer-First', async (conv) => {
 
         } else {
             conv.contexts.set('await-continue-yes', 1);
-            conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
+            conv.ask(new Suggestions('Next', 'Menu', 'Results'));
         }
 
     } else {
@@ -562,11 +572,11 @@ app.intent('Provides-Answer-Second', async (conv) => {
                 if (message['Image'] == 0) {
                     let m = message['Message'];
                     conv.ask(m);
-                    conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
+                    conv.ask(new Suggestions('Next', 'Menu', 'Results'));
                 } else {
                     let m = message['Message'];
                     conv.ask(m);
-                    conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
+                    conv.ask(new Suggestions('Next', 'Menu', 'Results'));
                 }
 
             } else {
@@ -575,7 +585,7 @@ app.intent('Provides-Answer-Second', async (conv) => {
 
         } else {
             conv.contexts.set('await-continue-yes', 1);
-            conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
+            conv.ask(new Suggestions('Next', 'Menu', 'Results'));
         }
 
     } else {
@@ -589,7 +599,7 @@ app.intent('Provides-Answer-Second', async (conv) => {
         // Ask new question here
         conv.contexts.set('await-continue-yes', 1);
         conv.ask(`Not quite. The answer is ` + actualAnswer + `.`);
-        conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
+        conv.ask(new Suggestions('Next', 'Menu', 'Results'));
     }
 });
 
@@ -690,13 +700,13 @@ app.intent('Show Results', async (conv) => {
                 ['Math', result['mathLevel']],
             ],
         }));
-        conv.ask(`Okay ${conv.data.studentName}, What would you like to practice now?`);
-        conv.ask(new Suggestions('Memo', 'Consepts', 'Clock', 'Math', 'E-Shop'));
+        conv.ask(`Okay ${conv.data.studentName}, What would you like to practice next?`);
+        conv.ask(new Suggestions('Memo', 'Math', 'Story', 'Clock', 'Dialog'));
     } else {
         conv.contexts.set('await-quiz-type', 1);
         conv.ask('Sorry, we did not find your result at this time.');
-        conv.ask(`Hello ${conv.data.studentName}, What would you like to practice now?`);
-        conv.ask(new Suggestions('Memo', 'Consepts', 'Clock', 'Math', 'E-Shop'));
+        conv.ask(`Hello ${conv.data.studentName}, What would you like to practice next?`);
+        conv.ask(new Suggestions('Memo', 'Math', 'Story', 'Clock', 'Dialog'));
     }
 });
 
