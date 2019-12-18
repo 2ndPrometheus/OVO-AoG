@@ -41,7 +41,7 @@ app.intent('Default Welcome Intent', async (conv) => {
     // Set the context
     conv.contexts.set('await-student-name', 1);
 
-    conv.ask('Hi, welcome to learn new things!  '\n'Please, choose your username.');
+    conv.ask('Hi, welcome to learn new things!  \nPlease, choose your username.');
     conv.ask(new BasicCard({
         text: 'Click your username or say it loud.',
         // subtitle: 'This is a subtitle',
