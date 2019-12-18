@@ -43,9 +43,9 @@ app.intent('Default Welcome Intent', async (conv) => {
 
     conv.ask('Hi, welcome to learn new things!  \nPlease, choose your username.');
     conv.ask(new BasicCard({
-        text: 'Click your username or say it loud.',
-        // subtitle: 'This is a subtitle',
-        title: 'Welcome to learn! ',
+        text: 'Say your username or press the name button.',
+        subtitle: 'I help you learn new things',
+        title: 'OVObot teacher',
         image: new Image({
             url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2FOVOselfie_400x400.png?alt=media&token=94ffc74a-ce93-462e-9728-bbd06261e2ec',
             alt: 'OVObot selfie'
@@ -83,7 +83,7 @@ app.intent('Provides-Name', async (conv, params) => {
 
         conv.contexts.set('await-quiz-type', 1);
 
-        conv.ask(`Hello ${studentName}, What would you like to practice today?`);
+        conv.ask(`Hello ${studentName}, What would you like to practice next?`);
         conv.ask(new BasicCard({
             text: 'Say it loud or press the button...',
             subtitle: 'What you want practice?',
@@ -98,7 +98,7 @@ app.intent('Provides-Name', async (conv, params) => {
 
     } else {
 
-        conv.close(`Sorry ${studentName}, I did not find your name, please contact Admin.`);
+        conv.close(`Sorry ${studentName}, I didt recognice that name, please choose one on the list.`);
 
     }
 });
