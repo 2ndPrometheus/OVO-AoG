@@ -43,7 +43,7 @@ app.intent('Default Welcome Intent', async (conv) => {
 
     conv.ask('Hi, welcome to learn new things!  \nPlease, choose your username.');
     conv.ask(new BasicCard({
-        text: 'Say your username or press the name button.',
+        text: 'Say your username \nor press the name button.',
         subtitle: 'I help you learn new things',
         title: 'OVObot teacher',
         image: new Image({
@@ -700,12 +700,19 @@ app.intent('Show Results', async (conv) => {
                 ['Math', result['mathLevel']],
             ],
         }));
-        conv.ask(`Okay ${conv.data.studentName}, What would you like to practice next?`);
+        let ssml;
+        ssml = '<speak>' +
+            '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
+            '<break time="1000ms"/>' +
+            'What would you like to do next?.' +
+            '</speak>';
+        conv.ask(ssml);    
+        //conv.ask(`Okay ${conv.data.studentName}, What would you like to do next?`);
         conv.ask(new Suggestions('Memo', 'Math', 'Story', 'Clock', 'Dialog'));
     } else {
         conv.contexts.set('await-quiz-type', 1);
         conv.ask('Sorry, we did not find your result at this time.');
-        conv.ask(`Hello ${conv.data.studentName}, What would you like to practice next?`);
+       conv.ask(`Hello ${conv.data.studentName}, What would you like to do next?`);
         conv.ask(new Suggestions('Memo', 'Math', 'Story', 'Clock', 'Dialog'));
     }
 });
