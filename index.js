@@ -21,7 +21,7 @@ const app = dialogflow({
 // Error handling
 app.catch((conv, error) => {
     console.error('Error at conv catch --> ', error);
-    conv.close('I encountered a glitch. Please try again after some time.');
+    conv.close('Oh Dear, I encountered a glitch. Please try again after some time.');
 });
 
 // Fallback
@@ -41,12 +41,14 @@ app.intent('Default Welcome Intent', async (conv) => {
     // Set the context
     conv.contexts.set('await-student-name', 1);
 
-    conv.ask('Hi, I welcome to OVO quiz!');
+    conv.ask('Hi, welcome to learn new things! Please, choose your username.');
     conv.ask(new BasicCard({
-        text: 'Please choose a username: ',
+        text: 'Click your username or say it loud.',
+        subtitle: 'This is a subtitle',
+        title: 'Welcome to learn... ',
         image: new Image({
-            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/images%2FOVObot_1024x1024.png?alt=media&token=401b1fba-90c7-4a36-9dd6-183611178d8a',
-            alt: 'OVO Bot Logo'
+            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2FOVOselfie_400x400.png?alt=media&token=94ffc74a-ce93-462e-9728-bbd06261e2ec',
+            alt: 'OVObot selfie'
         }),
         display: 'WHITE'
     }));
@@ -133,7 +135,7 @@ app.intent('Ask-First-Question', async (conv) => {
 
     if (record == 0) {
         conv.contexts.set('await-continue-yes', 1);
-        conv.ask('Sorry, we do not have more question. Please, change the category.');
+        conv.ask('Congratulations! You passed all levels in this category.');
         conv.ask(new Suggestions('Menu'));
     } else {
         let Answer = record['Answer'];
@@ -194,7 +196,7 @@ app.intent('Ask-Question', async (conv) => {
 
     if (record == 0) {
         conv.contexts.set('await-continue-yes', 1);
-        conv.ask('Sorry, we do not have more question. Please, change the category.');
+        conv.ask('Congratulations! You passed all levels in this category.');
         conv.ask(new Suggestions('Menu'));
     } else {
         let Answer = record['Answer'];
@@ -345,19 +347,19 @@ app.intent('Provides-Answer-First', async (conv) => {
                 if (message['Image'] == 0) {
                     let m = message['Message'];
                     conv.ask(m);
-                    conv.ask(new Suggestions('Next Question', 'Menu', 'Show Results'));
+                    conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
                 } else {
                     let m = message['Message'];
                     conv.ask(m);
-                    conv.ask(new Suggestions('Next Question', 'Menu', 'Show Results'));
+                    conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
                 }
             } else {
-                conv.ask('Sorry, I encountered an error. Try agin after sometime.')
+                conv.ask('Oh on, I encountered an error. Try agin after sometime.')
             }
 
         } else {
             conv.contexts.set('await-continue-yes', 1);
-            conv.ask(new Suggestions('Next Question', 'Menu', 'Show Results'));
+            conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
         }
 
     } else {
@@ -369,8 +371,9 @@ app.intent('Provides-Answer-First', async (conv) => {
                 // Show card with hint image and text
                 let ssml;
                 ssml = '<speak>' +
-                    'It is a wrong answer.' +
-                    '<audio src="https://www.soundjay.com/misc/fail-buzzer-01.mp3"></audio>' +
+                    '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
+                    '<break time="500ms"/>' +
+                    'Maybe I heard it wrong. Please try again.' +
                     '</speak>';
                 conv.ask(ssml);
                 conv.ask(new BasicCard({
@@ -385,8 +388,9 @@ app.intent('Provides-Answer-First', async (conv) => {
                 // Show card with image and text
                 let ssml;
                 ssml = '<speak>' +
-                    'It is a wrong answer.' +
-                    '<audio src="https://www.soundjay.com/misc/fail-buzzer-01.mp3"></audio>' +
+                    '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
+                    '<break time="500ms"/>' +
+                    'Maybe I heard it wrong. Please try again.' +
                     '</speak>';
                 conv.ask(ssml);
                 conv.ask(new BasicCard({
@@ -402,22 +406,42 @@ app.intent('Provides-Answer-First', async (conv) => {
             // speak the hint
             let ssml;
             ssml = '<speak>' +
-                'It is a wrong answer.' +
-                '<audio src="https://www.soundjay.com/misc/fail-buzzer-01.mp3"></audio>' +
-                '<break time="200ms"/>' +
+                '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
+                '<break time="500ms"/>' +
+                'Maybe I heard it wrong. Please try again.' +
+                '<break time="500ms"/>' +
                 conv.data.Hint +
                 '</speak>';
             conv.ask(ssml);
+            conv.ask(new BasicCard({
+                text: '',
+                subtitle: 'Try again',
+                title: '',
+                image: new Image({
+                    url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2Fwrong_answer_1.gif?alt=media&token=518d78ae-2d91-4653-aba4-1a5023739a99',
+                    alt: 'wondering'
+                }),
+                display: 'WHITE'
+            }));
         } else {
             // Show only that it is a wrong answer
             let ssml;
             ssml = '<speak>' +
-                'It is a wrong answer.' +
-                '<audio src="https://www.soundjay.com/misc/fail-buzzer-01.mp3"></audio>' +
-                '<break time="200ms"/>' +
-                'Please try again.' +
+                '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
+                '<break time="500ms"/>' +
+                'Maybe I heard it wrong. Please try again.' +
                 '</speak>';
             conv.ask(ssml);
+            conv.ask(new BasicCard({
+                text: '',
+                subtitle: 'Try again',
+                title: '',
+                image: new Image({
+                    url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2Fwrong_answer_1.gif?alt=media&token=518d78ae-2d91-4653-aba4-1a5023739a99',
+                    alt: 'wondering'
+                }),
+                display: 'WHITE'
+            }));
         }
     }
 });
@@ -538,11 +562,11 @@ app.intent('Provides-Answer-Second', async (conv) => {
                 if (message['Image'] == 0) {
                     let m = message['Message'];
                     conv.ask(m);
-                    conv.ask(new Suggestions('Next Question', 'Menu', 'Show Results'));
+                    conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
                 } else {
                     let m = message['Message'];
                     conv.ask(m);
-                    conv.ask(new Suggestions('Next Question', 'Menu', 'Show Results'));
+                    conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
                 }
 
             } else {
@@ -551,7 +575,7 @@ app.intent('Provides-Answer-Second', async (conv) => {
 
         } else {
             conv.contexts.set('await-continue-yes', 1);
-            conv.ask(new Suggestions('Next Question', 'Menu', 'Show Results'));
+            conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
         }
 
     } else {
@@ -565,7 +589,7 @@ app.intent('Provides-Answer-Second', async (conv) => {
         // Ask new question here
         conv.contexts.set('await-continue-yes', 1);
         conv.ask(`Not quite. The answer is ` + actualAnswer + `.`);
-        conv.ask(new Suggestions('Next Question', 'Menu', 'Show Results'));
+        conv.ask(new Suggestions('Next Question', 'Menu', 'Results'));
     }
 });
 
