@@ -703,7 +703,7 @@ app.intent('Show Results', async (conv) => {
         let ssml;
         ssml = '<speak>' +
             '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
-            '<break time="1000ms"/>' +
+            '<break time="1500ms"/>' +
             'What would you like to do next?.' +
             '</speak>';
         conv.ask(ssml);    
