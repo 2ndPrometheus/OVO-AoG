@@ -94,13 +94,13 @@ app.intent('Provides-Name', async (conv, params) => {
             }),
             display: 'WHITE'
         }));
-        conv.ask(new Suggestions('MEMO', 'Space', 'Clock', 'Math', 'Dialog'));
+        conv.ask(new Suggestions('MEMO', 'Consepts', 'Clock', 'Math', 'Dialog'));
 
     } else {
 
         //conv.close(`Sorry ${studentName}, I didt recognice that name, please choose one on the list.`);
         conv.ask(`Sorry ${studentName}, I didt recognice that name, please choose one on the list.`);
-        conv.ask(new Suggestions('MEMO', 'Space', 'Clock', 'Math', 'Dialog'));
+        conv.ask(new Suggestions('MEMO', 'Consepts', 'Clock', 'Math', 'Dialog'));
     }
 });
 
@@ -116,8 +116,8 @@ app.intent('Ask-First-Question', async (conv) => {
     // Generate question list
     if (conv.data.Type === 'Memo') {
         qList = await ad.getAllQuestionList('Memo', conv.data.memoLevel);
-    } else if (conv.data.Type === 'Space') {
-        qList = await ad.getAllQuestionList('Space', conv.data.conseptsLevel);
+    } else if (conv.data.Type === 'Consepts') {
+        qList = await ad.getAllQuestionList('Consepts', conv.data.conseptsLevel);
     } else if (conv.data.Type === 'Math') {
         qList = await ad.getAllQuestionList('Math', conv.data.mathLevel);
     } else if (conv.data.Type === 'Clock') {
@@ -191,8 +191,8 @@ app.intent('Ask-Question', async (conv) => {
         // Generate question list
         if (conv.data.Type === 'Memo') {
             qList = await ad.getAllQuestionList('Memo', conv.data.memoLevel);
-        } else if (conv.data.Type === 'Space') {
-            qList = await ad.getAllQuestionList('Space', conv.data.conseptsLevel);
+        } else if (conv.data.Type === 'Consepts') {
+            qList = await ad.getAllQuestionList('Consepts', conv.data.conseptsLevel);
         } else if (conv.data.Type === 'Math') {
             qList = await ad.getAllQuestionList('Math', conv.data.mathLevel);
         } else if (conv.data.Type === 'Clock') {
@@ -320,9 +320,9 @@ app.intent('Provides-Answer-First', async (conv) => {
                     'Memo': `Level${nLevel}`
                 }
                 conv.data.memoLevel = `Level${nLevel}`;
-            } else if (conv.data.Type === 'Space') {
+            } else if (conv.data.Type === 'Consepts') {
                 fields = {
-                    'Space': `Level${nLevel}`
+                    'Consepts': `Level${nLevel}`
                 }
                 conv.data.conseptsLevel = `Level${nLevel}`;
             } else if (conv.data.Type === 'Math') {
@@ -537,9 +537,9 @@ app.intent('Provides-Answer-Second', async (conv) => {
                     'Memo': `Level${nLevel}`
                 }
                 conv.data.memoLevel = `Level${nLevel}`;
-            } else if (conv.data.Type === 'Space') {
+            } else if (conv.data.Type === 'Consepts') {
                 fields = {
-                    'Space': `Level${nLevel}`
+                    'Consepts': `Level${nLevel}`
                 }
                 conv.data.conseptsLevel = `Level${nLevel}`;
             } else if (conv.data.Type === 'Math') {
@@ -696,7 +696,7 @@ app.intent('Show Results', async (conv) => {
             columns: ['Question Type', 'Level'],
             rows: [
                 ['Memo', result['memoLevel']],
-                ['Space', result['conseptsLevel']],
+                ['Consepts', result['conseptsLevel']],
                 ['Clock', result['clockLevel']],
                 ['Math', result['mathLevel']],
             ],
@@ -709,12 +709,12 @@ app.intent('Show Results', async (conv) => {
             '</speak>';
         conv.ask(ssml);    
         //conv.ask(`Okay ${conv.data.studentName}, What would you like to do next?`);
-        conv.ask(new Suggestions('MEMO', 'Math', 'Space', 'Clock', 'Dialog'));
+        conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'Dialog'));
     } else {
         conv.contexts.set('await-quiz-type', 1);
         conv.ask('Sorry, we did not find your result at this time.');
        conv.ask(`Hello ${conv.data.studentName}, What would you like to do next?`);
-        conv.ask(new Suggestions('MEMO', 'Math', 'Space', 'Clock', 'Dialog'));
+        conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'Dialog'));
     }
 });
 
