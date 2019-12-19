@@ -85,7 +85,7 @@ app.intent('Provides-Name', async (conv, params) => {
 
         conv.ask(`Hello ${studentName}, What would you like to practice next?`);
         conv.ask(new BasicCard({
-            text: 'Say it loud or press the button...',
+            text: 'Say or press the button...',
             subtitle: 'What you want practice?',
             title: 'Choose category',
             image: new Image({
@@ -413,6 +413,7 @@ app.intent('Provides-Answer-First', async (conv) => {
                     display: 'WHITE',
                     title: conv.data.HintText
                 }));
+                conv.ask(new Suggestions('Menu'));
             }
         } else if (conv.data.Hint != 0) {
             // speak the hint
@@ -427,7 +428,7 @@ app.intent('Provides-Answer-First', async (conv) => {
             conv.ask(ssml);
             conv.ask(new BasicCard({
                 text: '',
-                subtitle: 'Try again',
+                subtitle: 'Say again',
                 title: '',
                 image: new Image({
                     url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2Fwrong_answer_1.gif?alt=media&token=518d78ae-2d91-4653-aba4-1a5023739a99',
@@ -435,6 +436,7 @@ app.intent('Provides-Answer-First', async (conv) => {
                 }),
                 display: 'WHITE'
             }));
+            conv.ask(new Suggestions('Menu'));
         } else {
             // Show only that it is a wrong answer
             let ssml;
@@ -454,6 +456,7 @@ app.intent('Provides-Answer-First', async (conv) => {
                 }),
                 display: 'WHITE'
             }));
+            conv.ask(new Suggestions('Menu'));
         }
     }
 });
