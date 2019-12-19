@@ -43,7 +43,7 @@ app.intent('Default Welcome Intent', async (conv) => {
 
     conv.ask('Hi, welcome to learn new things!  \nPlease, choose your username.');
     conv.ask(new BasicCard({
-        text: 'Say your username \nor press the name button.',
+        text: 'Say the name or press button.',
         subtitle: 'I help you learn new things',
         title: 'OVObot teacher',
         image: new Image({
@@ -100,7 +100,7 @@ app.intent('Provides-Name', async (conv, params) => {
 
         //conv.close(`Sorry ${studentName}, I didt recognice that name, please choose one on the list.`);
         conv.ask(`Sorry ${studentName}, I didt recognice that name, please choose one on the list.`);
-        conv.ask(new Suggestions('MEMO', 'Consepts', 'Clock', 'Math', 'Dialog'));
+        conv.ask(new Suggestions(names.slice(0, 8)));
     }
 });
 
@@ -366,6 +366,7 @@ app.intent('Provides-Answer-First', async (conv) => {
                 }
             } else {
                 conv.ask('Oh on, I encountered an error. Try agin after sometime.')
+                conv.ask(new Suggestions('Menu'));
             }
 
         } else {
@@ -384,7 +385,7 @@ app.intent('Provides-Answer-First', async (conv) => {
                 ssml = '<speak>' +
                     '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
                     '<break time="500ms"/>' +
-                    'Maybe I heard it wrong. Please try again.' +
+                    'Are you sure? Please say again.' +
                     '</speak>';
                 conv.ask(ssml);
                 conv.ask(new BasicCard({
@@ -599,7 +600,7 @@ app.intent('Provides-Answer-Second', async (conv) => {
 
         // Ask new question here
         conv.contexts.set('await-continue-yes', 1);
-        conv.ask(`Not quite. The answer is ` + actualAnswer + `.`);
+        conv.ask(`Good try. The answer is ` + actualAnswer + `.`);
         conv.ask(new Suggestions('Next', 'Menu', 'Results'));
     }
 });
@@ -676,6 +677,8 @@ app.intent('Default Fallback Intent', (conv) => {
     if (conv.data.fallbackCount < 10) {
         conv.contexts.set(getContext, 1);
         conv.ask('Please say It again.');
+        conv.ask(new Suggestions('MENU'));
+
     } else {
         conv.close('Sorry, I am facing trouble hearing you, try again after sometime.');
     }
