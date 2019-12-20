@@ -612,7 +612,27 @@ app.intent('Provides-Answer-Second', async (conv) => {
 app.intent('E-Shop', (conv) => {
     conv.contexts.set('e-shop-conv', 1);
     conv.data.checkoutPrice = 0;
-    conv.ask('Welcome to e-shop! How can I help you?');
+    let ssml;
+    ssml = '<speak>' +
+        '<audio src="https://www.soundjay.com/button/sounds/button-34.mp3"></audio>' +
+        '<break time="500ms"/>' +
+        'Welcome to Space Ship Shop!' + 
+        '<break time="500ms"/>' +
+        'How can I help you?' +
+        '</speak>';
+    conv.ask(ssml);
+    conv.ask(new BasicCard({
+        text: 'Like: 3 Banana or bread',
+        subtitle: 'Say what you want?',
+        title: 'Space Shop',
+        image: new Image({
+            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FDialog%2Fdialog_welcome.png?alt=media&token=ba080f3f-dc26-430e-865b-e783c6272e76',
+            alt: 'Space Shop'
+        }),
+        display: 'WHITE'
+    }));
+    conv.ask(new Suggestions('Tickets', 'Restaurant', 'Menu'));
+
 });
 
 app.intent('E-Shop-Buy-Items', async (conv, params) => {
