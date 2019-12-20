@@ -94,7 +94,7 @@ app.intent('Provides-Name', async (conv, params) => {
             }),
             display: 'WHITE'
         }));
-        conv.ask(new Suggestions('MEMO', 'Consepts', 'Clock', 'Math', 'Dialog'));
+        conv.ask(new Suggestions('MEMO', 'Consepts', 'Clock', 'Math', 'e-shop'));
 
     } else {
 
@@ -413,7 +413,7 @@ app.intent('Provides-Answer-First', async (conv) => {
                     display: 'WHITE',
                     title: conv.data.HintText
                 }));
-                conv.ask(new Suggestions('Menu'));
+                
             }
         } else if (conv.data.Hint != 0) {
             // speak the hint
@@ -715,12 +715,12 @@ app.intent('Show Results', async (conv) => {
             '</speak>';
         conv.ask(ssml);    
         //conv.ask(`Okay ${conv.data.studentName}, What would you like to do next?`);
-        conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'Dialog'));
+        conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'e-shop'));
     } else {
         conv.contexts.set('await-quiz-type', 1);
         conv.ask('Sorry, we did not find your result at this time.');
        conv.ask(`Hello ${conv.data.studentName}, What would you like to do next?`);
-        conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'Dialog'));
+        conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'e-shop'));
     }
 });
 
