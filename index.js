@@ -613,13 +613,11 @@ app.intent('E-Shop', (conv) => {
     conv.contexts.set('e-shop-conv', 1);
     conv.data.checkoutPrice = 0;
     let ssml;
-    ssml = '<speak>' +
-        '<audio src="https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/sounds%2FChamber%20Decompressing-SoundBible.com-1075404493.mp3?alt=media&token=a663dbd0-c558-4589-926c-4a397a86154a"></audio>' +
-        '<break time="500ms"/>' +
-        'Welcome to Space Ship Shop!' + 
-        '<break time="500ms"/>' +
-        'Here you can order many items directly from me or choose the catecory from the list?' +
-        '</speak>';
+            ssml = '<speak>' +
+                '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
+                '<break time="500ms"/>' +
+                'Maybe I heard it wrong. Please try again.' +
+                '</speak>';
     conv.ask(ssml);
     conv.ask(new BasicCard({
         text: 'You can say like:  I would like to bye 3 space banana.',
