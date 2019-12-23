@@ -385,7 +385,9 @@ app.intent('Provides-Answer-First', async (conv) => {
                 ssml = '<speak>' +
                     '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
                     '<break time="500ms"/>' +
-                    'Are you sure? Please say again.' +
+                    'You are on the trail but not quite (1). Please try again.' +
+                    '<break time="500ms"/>' +
+                    conv.data.Hint +
                     '</speak>';
                 conv.ask(ssml);
                 conv.ask(new BasicCard({
@@ -402,7 +404,8 @@ app.intent('Provides-Answer-First', async (conv) => {
                 ssml = '<speak>' +
                     '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
                     '<break time="500ms"/>' +
-                    'Maybe I heard it wrong. Please try again.' +
+                    'You are on the trail but not quite. Please try again.' +
+                    '<break time="500ms"/>' +
                     '</speak>';
                 conv.ask(ssml);
                 conv.ask(new BasicCard({
@@ -421,7 +424,7 @@ app.intent('Provides-Answer-First', async (conv) => {
             ssml = '<speak>' +
                 '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
                 '<break time="500ms"/>' +
-                'Maybe I heard it wrong. Please try again.' +
+                'You are on the trail but not quite. Please try again.' +
                 '<break time="500ms"/>' +
                 conv.data.Hint +
                 '</speak>';
@@ -429,7 +432,7 @@ app.intent('Provides-Answer-First', async (conv) => {
             conv.ask(new BasicCard({
                 text: '',
                 subtitle: 'Say again',
-                title: '',
+                title: '(3)',
                 image: new Image({
                     url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2Fwrong_answer_1.gif?alt=media&token=518d78ae-2d91-4653-aba4-1a5023739a99',
                     alt: 'wondering'
@@ -443,12 +446,13 @@ app.intent('Provides-Answer-First', async (conv) => {
             ssml = '<speak>' +
                 '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
                 '<break time="500ms"/>' +
-                'Maybe I heard it wrong. Please try again.' +
+                'You are on the trail but not quite. Please try again.' +
+                '<break time="500ms"/>' +
                 '</speak>';
             conv.ask(ssml);
             conv.ask(new BasicCard({
-                text: '',
-                subtitle: 'Try again',
+                text: '(4)',
+                subtitle: 'You are on the trail but not quite. Please try again.',
                 title: '',
                 image: new Image({
                     url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2Fwrong_answer_1.gif?alt=media&token=518d78ae-2d91-4653-aba4-1a5023739a99',
