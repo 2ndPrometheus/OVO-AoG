@@ -614,19 +614,19 @@ app.intent('E-Shop', (conv) => {
     conv.data.checkoutPrice = 0;
     let ssml;
     ssml = '<speak>' +
-        '<audio src="https://www.soundjay.com/button/sounds/button-34.mp3"></audio>' +
+        '<audio src="https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/sounds%2FChamber%20Decompressing-SoundBible.com-1075404493.mp3?alt=media&token=a663dbd0-c558-4589-926c-4a397a86154a"></audio>' +
         '<break time="500ms"/>' +
         'Welcome to Space Ship Shop!' + 
         '<break time="500ms"/>' +
-        'How can I help you?' +
+        'Here you can order many items directly from me or choose the catecory from the list?' +
         '</speak>';
     conv.ask(ssml);
     conv.ask(new BasicCard({
-        text: 'Like: 3 Banana or bread',
-        subtitle: 'Say what you want?',
-        title: 'Space Shop',
+        text: 'You can say like:  I would like to bye 3 space banana.',
+        subtitle: 'Here you can order many items directly or choose the catecory from the list?',
+        title: 'Space Ship Shop',
         image: new Image({
-            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FDialog%2Fdialog_welcome.png?alt=media&token=ba080f3f-dc26-430e-865b-e783c6272e76',
+            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FSpace%2Fshop.png?alt=media&token=9968de16-6dd7-4b32-ae10-fc003d601ba2',
             alt: 'Space Shop'
         }),
         display: 'WHITE'
