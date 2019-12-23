@@ -615,9 +615,10 @@ app.intent('E-Shop', (conv) => {
     let ssml;
             ssml = '<speak>' +
                 '<audio src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>' +
-                '<break time="500ms"/>' +
+                '<break time="300ms"/>' +
                 'Wellcome to Space Ship Shop' +
-                'Here you can order many items directly or choose the catecory from the list?' +
+                '<break time="500ms"/>' +
+                'Here you can order many items directly <break time="200ms"/> or choose the catecory from the list?' +
                 '</speak>';
     conv.ask(ssml);
     conv.ask(new BasicCard({
