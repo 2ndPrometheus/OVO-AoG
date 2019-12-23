@@ -614,9 +614,9 @@ app.intent('E-Shop', (conv) => {
     conv.data.checkoutPrice = 0;
     let ssml;
             ssml = '<speak>' +
-                '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
+                '<audio src="https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/sounds%2FChamber%20Decompressing-SoundBible.com-1075404493.mp3?alt=media&token=a663dbd0-c558-4589-926c-4a397a86154a"></audio>' +
                 '<break time="500ms"/>' +
-                'Maybe I heard it wrong. Please try again.' +
+                'Wellcome to Space Ship Shop' +
                 '</speak>';
     conv.ask(ssml);
     conv.ask(new BasicCard({
