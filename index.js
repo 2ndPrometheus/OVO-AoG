@@ -585,7 +585,7 @@ app.intent('Provides-Answer-Second', async (conv) => {
                     conv.ask(m);
                     conv.ask(new BasicCard({
                         image: new Image({
-                            url: clapURL,
+                            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2FLevelUp.png?alt=media&token=28f00bbe-4f20-4d04-af63-2bdfb1960d82',
                             alt: 'Level Up'
                         })
                     }));
