@@ -96,7 +96,7 @@ app.intent('Provides-Name', async (conv, params) => {
             }),
             display: 'WHITE'
         }));
-        conv.ask(new Suggestions('MEMO', 'Consepts', 'Clock', 'Math', 'e-shop'));
+        conv.ask(new Suggestions('Memo', 'Consepts', 'Clock', 'Math', 'Dialog'));
 
     } else {
 
@@ -209,7 +209,7 @@ app.intent('Ask-Question', async (conv) => {
 
     if (record == 0) {
         conv.contexts.set('await-continue-yes', 1);
-        conv.ask('Congratulations! You answered all questions in this level.');
+        conv.ask('Congratulations! You have passed all levels in this cotegory.');
         conv.ask(new Suggestions('Menu'));
     } else {
         let Answer = record['Answer'];
@@ -747,12 +747,12 @@ app.intent('Show Results', async (conv) => {
             '</speak>';
         conv.ask(ssml);    
         conv.ask(`What would you like to do next?`);
-        conv.ask(new Suggestions('Menu','MEMO', 'Math', 'Consepts', 'Clock', 'e-shop'));
+        conv.ask(new Suggestions('Menu','Memo', 'Math', 'Consepts', 'Clock', 'Dialog'));
     } else {
         conv.contexts.set('await-quiz-type', 1);
         conv.ask(`Sorry ${conv.data.studentName}, we did not find your result at this time.`);
         //conv.ask(`Hello ${studentName}, What would you like to practice next?`);
-        conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'e-shop'));
+        conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'Dialog'));
     }
 });
 
