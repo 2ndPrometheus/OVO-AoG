@@ -148,7 +148,7 @@ app.intent('Ask-First-Question', async (conv) => {
 
     if (record == 0) {
         conv.contexts.set('await-continue-yes', 1);
-        conv.ask('Great! You have answered all the questions at this level. Go menu and try again if you want to continue');
+        conv.ask('Great! You have answered all the questions at this level. Log out and try again if you want to continue');
         conv.ask(new Suggestions('Menu'));
     } else {
         let Answer = record['Answer'];
@@ -209,7 +209,7 @@ app.intent('Ask-Question', async (conv) => {
 
     if (record == 0) {
         conv.contexts.set('await-continue-yes', 1);
-        conv.ask('Congratulations! You passed all levels in this category.');
+        conv.ask('Congratulations! You answered all questions in this level.');
         conv.ask(new Suggestions('Menu'));
     } else {
         let Answer = record['Answer'];
@@ -300,7 +300,7 @@ app.intent('Provides-Answer-First', async (conv) => {
         } else {
             conv.ask(message['Message']);
             conv.ask(new BasicCard({
-                title: 'Well done',
+                title: 'Well done!',
                 subtitle: '',
                 text: 'Say or click "next", when you want new question',
                 image: new Image({
@@ -440,7 +440,7 @@ app.intent('Provides-Answer-First', async (conv) => {
             conv.ask(new BasicCard({
                 text: '',
                 subtitle: 'Say again',
-                title: '(3)',
+                title: 'No hint image this time',
                 image: new Image({
                     url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2Fwrong_answer_1.gif?alt=media&token=518d78ae-2d91-4653-aba4-1a5023739a99',
                     alt: 'wondering'
