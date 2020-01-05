@@ -728,7 +728,7 @@ app.intent('Show Results', async (conv) => {
     // Check the status
     if (result['status'] == 1) {
         conv.contexts.set('await-quiz-type', 1);
-        conv.ask('Your result is shown in the table below.');
+        conv.ask(`${studentName}, your results are listed in the table below`);
         conv.ask(new Table({
             dividers: true,
             columns: ['Question Type', 'Level'],
@@ -751,7 +751,7 @@ app.intent('Show Results', async (conv) => {
     } else {
         conv.contexts.set('await-quiz-type', 1);
         conv.ask('Sorry, we did not find your result at this time.');
-       conv.ask(`Hello ${conv.data.studentName}, What would you like to do next?`);
+        conv.ask(`Hello ${studentName}, What would you like to practice next?`);
         conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'e-shop'));
     }
 });
