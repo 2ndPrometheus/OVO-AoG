@@ -22,6 +22,8 @@ const app = dialogflow({
 app.catch((conv, error) => {
     console.error('Error at conv catch --> ', error);
     conv.close('Oh Dear, I encountered a glitch. Please try again after some time.');
+    //conv.ask('Oh Dear, I encountered a glitch. Please say again'); JW
+    //conv.ask(new Suggestions('Menu')); JW
 });
 
 // Fallback
@@ -593,7 +595,7 @@ app.intent('Provides-Answer-Second', async (conv) => {
                     conv.ask(m);
                     conv.ask(new BasicCard({
                         image: new Image({
-                            url: message['ImageURL'],
+                            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2FLevelUp.png?alt=media&token=28f00bbe-4f20-4d04-af63-2bdfb1960d82',
                             alt: 'Level Up'
                         })
                     }));
