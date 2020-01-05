@@ -45,9 +45,9 @@ app.intent('Default Welcome Intent', async (conv) => {
 
     conv.ask('Hi, welcome to learn new things!  \nPlease, choose your username.');
     conv.ask(new BasicCard({
-        text: 'Say the name or press button.',
-        subtitle: 'I help you learn new things',
         title: 'OVObot teacher',
+        subtitle: 'I help you learn new things',
+        text: 'Say the name or press button.',
         image: new Image({
             url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2FOVOselfie_400x400.png?alt=media&token=94ffc74a-ce93-462e-9728-bbd06261e2ec',
             alt: 'OVObot selfie'
@@ -289,7 +289,9 @@ app.intent('Provides-Answer-First', async (conv) => {
         if (message['Image'] == 0) {
             conv.ask(message['Message']);
             conv.ask(new BasicCard({
-                text: 'Say or click next when you want next question',
+                title: 'Well done',
+                subtitle: '',
+                text: 'Say or click "next", when you want next question',
                 image: new Image({
                     url: clapURL,
                     alt: 'Clap Image'
@@ -298,7 +300,9 @@ app.intent('Provides-Answer-First', async (conv) => {
         } else {
             conv.ask(message['Message']);
             conv.ask(new BasicCard({
-                text: 'Say or click next when you want new question',
+                title: 'Well done',
+                subtitle: '',
+                text: 'Say or click "next", when you want new question',
                 image: new Image({
                     url: message['ImageURL'],
                     alt: 'Congratulation Image'
