@@ -289,6 +289,7 @@ app.intent('Provides-Answer-First', async (conv) => {
         if (message['Image'] == 0) {
             conv.ask(message['Message']);
             conv.ask(new BasicCard({
+                text: 'Say or click next when you want next question'
                 image: new Image({
                     url: clapURL,
                     alt: 'Clap Image'
@@ -297,6 +298,7 @@ app.intent('Provides-Answer-First', async (conv) => {
         } else {
             conv.ask(message['Message']);
             conv.ask(new BasicCard({
+                text: 'Say or click next when you want new question'
                 image: new Image({
                     url: message['ImageURL'],
                     alt: 'Congratulation Image'
@@ -583,22 +585,10 @@ app.intent('Provides-Answer-Second', async (conv) => {
                 if (message['Image'] == 0) {
                     let m = message['Message'];
                     conv.ask(m);
-                    conv.ask(new BasicCard({
-                        image: new Image({
-                            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2FLevelUp.png?alt=media&token=28f00bbe-4f20-4d04-af63-2bdfb1960d82',
-                            alt: 'Level Up'
-                        })
-                    }));
                     conv.ask(new Suggestions('Next', 'Menu', 'Results'));
                 } else {
                     let m = message['Message'];
                     conv.ask(m);
-                    conv.ask(new BasicCard({
-                        image: new Image({
-                            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2FLevelUp.png?alt=media&token=28f00bbe-4f20-4d04-af63-2bdfb1960d82',
-                            alt: 'Level Up'
-                        })
-                    }));
                     conv.ask(new Suggestions('Next', 'Menu', 'Results'));
                 }
 
