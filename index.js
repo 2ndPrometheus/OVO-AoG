@@ -146,7 +146,7 @@ app.intent('Ask-First-Question', async (conv) => {
 
     if (record == 0) {
         conv.contexts.set('await-continue-yes', 1);
-        conv.ask('Congratulations! You passed all levels in this category.');
+        conv.ask('Great! You have answered all the questions at this level. Go menu and try again if you want to continue');
         conv.ask(new Suggestions('Menu'));
     } else {
         let Answer = record['Answer'];
@@ -365,7 +365,7 @@ app.intent('Provides-Answer-First', async (conv) => {
                     conv.ask(new Suggestions('Next', 'Menu', 'Results'));
                 }
             } else {
-                conv.ask('Oh on, I encountered an error. Try agin after sometime.')
+                conv.ask('Oh on, I encountered an question error. Go to menu and try again.')
                 conv.ask(new Suggestions('Menu'));
             }
 
@@ -385,7 +385,7 @@ app.intent('Provides-Answer-First', async (conv) => {
                 ssml = '<speak>' +
                     '<audio src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>' +
                     '<break time="500ms"/>' +
-                    'You are on the trail but not quite (1). Please try again.' +
+                    'You are on the trail but not quite. See the hint and try again.' +
                     '<break time="500ms"/>' +
                     conv.data.Hint +
                     '</speak>';
@@ -451,8 +451,8 @@ app.intent('Provides-Answer-First', async (conv) => {
                 '</speak>';
             conv.ask(ssml);
             conv.ask(new BasicCard({
-                text: '(4)',
-                subtitle: 'You are on the trail but not quite. Please try again.',
+                text: 'No hint this time',
+                subtitle: 'Do you remember the question?',
                 title: '',
                 image: new Image({
                     url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2Fwrong_answer_1.gif?alt=media&token=518d78ae-2d91-4653-aba4-1a5023739a99',
@@ -581,15 +581,27 @@ app.intent('Provides-Answer-Second', async (conv) => {
                 if (message['Image'] == 0) {
                     let m = message['Message'];
                     conv.ask(m);
+                    conv.ask(new BasicCard({
+                        image: new Image({
+                            url: clapURL,
+                            alt: 'Level Up'
+                        })
+                    }));
                     conv.ask(new Suggestions('Next', 'Menu', 'Results'));
                 } else {
                     let m = message['Message'];
                     conv.ask(m);
+                    conv.ask(new BasicCard({
+                        image: new Image({
+                            url: message['ImageURL'],
+                            alt: 'Level Up'
+                        })
+                    }));
                     conv.ask(new Suggestions('Next', 'Menu', 'Results'));
                 }
 
             } else {
-                conv.ask('Sorry, I encountered an error. Try agin after sometime.')
+                conv.ask('I encountered an level error in my software. Go back to menu and try again.')
             }
 
         } else {
@@ -739,7 +751,7 @@ app.intent('Show Results', async (conv) => {
             '</speak>';
         conv.ask(ssml);    
         //conv.ask(`Okay ${conv.data.studentName}, What would you like to do next?`);
-        conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'e-shop'));
+        conv.ask(new Suggestions('Menu','MEMO', 'Math', 'Consepts', 'Clock', 'e-shop'));
     } else {
         conv.contexts.set('await-quiz-type', 1);
         conv.ask('Sorry, we did not find your result at this time.');
