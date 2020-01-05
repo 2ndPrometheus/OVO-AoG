@@ -100,8 +100,8 @@ app.intent('Provides-Name', async (conv, params) => {
 
     } else {
 
-        //conv.close(`Sorry ${studentName}, I didt recognice that name, please choose one on the list.`);
-        conv.ask(`Sorry ${studentName}, I didt recognice that name, please choose one on the list.`);
+        conv.close(`Sorry ${studentName}, I didt recognice that name, please choose one on the list.`);
+        //conv.ask(`Sorry ${studentName}, I didt recognice that name, please choose one on the list.`);
         conv.ask(new Suggestions(names.slice(0, 8)));
     }
 });
@@ -728,7 +728,7 @@ app.intent('Show Results', async (conv) => {
     // Check the status
     if (result['status'] == 1) {
         conv.contexts.set('await-quiz-type', 1);
-        conv.ask(`${studentName}, your results are listed in the table below`);
+        conv.ask(`Your results are listed in the table below`);
         conv.ask(new Table({
             dividers: true,
             columns: ['Question Type', 'Level'],
@@ -746,7 +746,7 @@ app.intent('Show Results', async (conv) => {
             'What would you like to do next?.' +
             '</speak>';
         conv.ask(ssml);    
-        //conv.ask(`Okay ${conv.data.studentName}, What would you like to do next?`);
+        conv.ask(`${conv.data.studentName}, What would you like to do next?`);
         conv.ask(new Suggestions('Menu','MEMO', 'Math', 'Consepts', 'Clock', 'e-shop'));
     } else {
         conv.contexts.set('await-quiz-type', 1);
