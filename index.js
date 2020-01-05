@@ -289,7 +289,7 @@ app.intent('Provides-Answer-First', async (conv) => {
         if (message['Image'] == 0) {
             conv.ask(message['Message']);
             conv.ask(new BasicCard({
-                text: 'Say or click next when you want next question'
+                text: 'Say or click next when you want next question',
                 image: new Image({
                     url: clapURL,
                     alt: 'Clap Image'
@@ -298,7 +298,7 @@ app.intent('Provides-Answer-First', async (conv) => {
         } else {
             conv.ask(message['Message']);
             conv.ask(new BasicCard({
-                text: 'Say or click next when you want new question'
+                text: 'Say or click next when you want new question',
                 image: new Image({
                     url: message['ImageURL'],
                     alt: 'Congratulation Image'
