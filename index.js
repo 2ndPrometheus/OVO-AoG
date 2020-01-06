@@ -620,6 +620,30 @@ app.intent('Provides-Answer-Second', async (conv) => {
     }
 });
 
+// Dialog Intent
+app.intent('Dialog', (conv) => {
+    let ssml;
+            ssml = '<speak>' +
+                '<audio src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>' +
+                '<break time="300ms"/>' +
+                'Welcome to e-shop to practice dialogues!' +
+                '<break time="500ms"/>' +
+                'Here you can buy many items <break time="200ms"/>' +
+                '</speak>';
+    conv.ask(ssml);
+    conv.ask(new BasicCard({
+        text: 'Say what you want or choose the category',
+        subtitle: 'How can I help you?',
+        title: 'eSHOP',
+        image: new Image({
+            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FDialog%2Fdialog.png?alt=media&token=b326e9e4-a338-4e2d-95fe-25e023dddcd9',
+            alt: 'eShop'
+        }),
+        display: 'WHITE'
+    }));
+    conv.ask(new Suggestions('Tickets', 'Restaurant', 'Menu'));
+});
+
 // E Shop intent
 app.intent('E-Shop', (conv) => {
     conv.contexts.set('e-shop-conv', 1);
@@ -628,18 +652,18 @@ app.intent('E-Shop', (conv) => {
             ssml = '<speak>' +
                 '<audio src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>' +
                 '<break time="300ms"/>' +
-                'Wellcome to Space Ship Shop' +
+                'Wellcome to eShop!' +
                 '<break time="500ms"/>' +
-                'Here you can order many items directly <break time="200ms"/> or choose the catecory from the list?' +
+                'Here you can buy many items <break time="200ms"/>' +
                 '</speak>';
     conv.ask(ssml);
     conv.ask(new BasicCard({
-        text: 'You can say like:  I would like to bye 3 space banana.',
-        subtitle: 'Here you can order many items directly or choose the catecory from the list?',
-        title: 'Space Ship Shop',
+        text: 'Say what you want or choose the category',
+        subtitle: 'How can I help you?',
+        title: 'eSHOP',
         image: new Image({
-            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FSpace%2Fshop.png?alt=media&token=9968de16-6dd7-4b32-ae10-fc003d601ba2',
-            alt: 'Space Shop'
+            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FDialog%2Fdialog.png?alt=media&token=b326e9e4-a338-4e2d-95fe-25e023dddcd9',
+            alt: 'eShop'
         }),
         display: 'WHITE'
     }));
