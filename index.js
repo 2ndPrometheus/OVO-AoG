@@ -674,7 +674,7 @@ app.intent('E-Shop', (conv) => {
         }),
         display: 'WHITE'
     }));
-    conv.ask(new Suggestions('Tickets', 'Restaurant', 'Supermarket', '-> Back'));
+    conv.ask(new Suggestions('Dialog', 'Main menu'));
 
 });
 
@@ -686,11 +686,11 @@ app.intent('E-Shop-Buy-Items', async (conv, params) => {
     let record = await ad.getItemFromEShop(item);
 
     if (record['status'] == 0) {
-        conv.ask(`${item} is not available, do you want anything else?`);
+        conv.ask(`${item} is not available in this store, do you want anything else?`);
     } else {
         let price = record['Price'];
         conv.data.checkoutPrice = conv.data.checkoutPrice + price;
-        conv.ask(`${item} is added, do you want anything else?`)
+        conv.ask(`${item} is added to your cart, do you want anything else?`)
         conv.ask(new BasicCard({
             image: new Image({
                 url: record['ImageURL'],
@@ -703,7 +703,8 @@ app.intent('E-Shop-Buy-Items', async (conv, params) => {
 // E Shop checkout intent
 app.intent('E-Shop-Checkout', (conv) => {
     conv.contexts.set('e-shop-conv', 0);
-    conv.close(`It takes ${conv.data.checkoutPrice} Euros.`);
+    conv.close(`It takes ${conv.data.checkoutPrice} euros in total. Thank you and have a nice day!`);
+    conv.ask(new Suggestions('Dialog', 'Main menu'));
 });
 
 // Continue yes
