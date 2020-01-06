@@ -653,7 +653,7 @@ app.intent('Dialog', (conv) => {
         }),
         display: 'WHITE'
     }));
-    conv.ask(new Suggestions('Tickets', 'Restaurant', 'eShop', '-> Back'));
+    conv.ask(new Suggestions('Tickets', 'Restaurant', 'E-Shop', '-> Back'));
 
 });
 
