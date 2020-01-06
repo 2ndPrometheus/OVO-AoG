@@ -96,7 +96,7 @@ app.intent('Provides-Name', async (conv, params) => {
             }),
             display: 'WHITE'
         }));
-        conv.ask(new Suggestions('Memo', 'Consepts', 'Clock', 'Math', 'E-shop'));
+        conv.ask(new Suggestions('Memo', 'Consepts', 'Clock', 'Math', 'Dialog'));
 
     } else {
 
@@ -620,6 +620,33 @@ app.intent('Provides-Answer-Second', async (conv) => {
     }
 });
 
+// Dialog intent
+app.intent('Dialog', (conv) => {
+    let ssml;
+            ssml = '<speak>' +
+                '<audio src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>' +
+                '<break time="200ms"/>' +
+                'Welcome to dialog exercise' +
+                '<break time="500ms"/>' +
+                'Here you can practice to do different tasks.' + 
+                '<break time="500ms"/>' +
+                'Choose the category you want to practise.' +
+                '</speak>';
+    conv.ask(ssml);
+    conv.ask(new BasicCard({
+        title: 'DIALOG EXERCISE',
+        subtitle: 'What do you want to practice?',
+        text: 'Choose the category.',
+        image: new Image({
+            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FDialog%2Fdialog.png?alt=media&token=b326e9e4-a338-4e2d-95fe-25e023dddcd9',
+            alt: 'Dialog'
+        }),
+        display: 'WHITE'
+    }));
+    conv.ask(new Suggestions('Tickets', 'Restaurant', 'Supermarket', '-> Back'));
+
+});
+
 // E Shop intent
 app.intent('E-Shop', (conv) => {
     conv.contexts.set('e-shop-conv', 1);
@@ -627,10 +654,12 @@ app.intent('E-Shop', (conv) => {
     let ssml;
             ssml = '<speak>' +
                 '<audio src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>' +
-                '<break time="300ms"/>' +
+                '<break time="200ms"/>' +
                 'Welcome to dialog exercise' +
                 '<break time="500ms"/>' +
-                'Here you can practice to do different tasks.' +
+                'Here you can practice to do different tasks.' + 
+                '<break time="500ms"/>' +
+                'Choose the category you want to practise.' +
                 '</speak>';
     conv.ask(ssml);
     conv.ask(new BasicCard({
@@ -747,12 +776,12 @@ app.intent('Show Results', async (conv) => {
             '</speak>';
         conv.ask(ssml);    
         conv.ask(`What would you like to do next?`);
-        conv.ask(new Suggestions('Menu','Memo', 'Math', 'Consepts', 'Clock', 'E-shop'));
+        conv.ask(new Suggestions('Menu','Memo', 'Math', 'Consepts', 'Clock', 'Dialog'));
     } else {
         conv.contexts.set('await-quiz-type', 1);
         conv.ask(`Sorry ${conv.data.studentName}, we did not find your result at this time.`);
         //conv.ask(`Hello ${studentName}, What would you like to practice next?`);
-        conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'E-shop'));
+        conv.ask(new Suggestions('MEMO', 'Math', 'Consepts', 'Clock', 'Dialog'));
     }
 });
 
