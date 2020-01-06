@@ -630,7 +630,7 @@ app.intent('Dialog', (conv) => {
                 '<break time="500ms"/>' +
                 'Here you can practice to do different tasks.' + 
                 '<break time="500ms"/>' +
-                'Choose the category you want to practise.' +
+                'Choose the category you want to practice.' +
                 '</speak>';
     conv.ask(ssml);
     conv.ask(new BasicCard({
@@ -643,7 +643,7 @@ app.intent('Dialog', (conv) => {
         }),
         display: 'WHITE'
     }));
-    conv.ask(new Suggestions('Tickets', 'Restaurant', 'E-Shop', '-> Back'));
+    conv.ask(new Suggestions('Tickets', 'Restaurant', 'eShop', '-> Back'));
 
 });
 
@@ -661,20 +661,20 @@ app.intent('E-Shop', (conv) => {
                 '<break time="300ms"/>' +
                 'You can say like:' +
                 '<break time="200ms"/>' +
-                'I want water and bread, please?' +
+                'I would like water and bread?' +
                 '</speak>';
     conv.ask(ssml);
     conv.ask(new BasicCard({
         title: 'Supermarket exercise',
         subtitle: 'What do you want?',
-        text: 'Say what items you want.  \nLike: I want 3 apple, please.',
+        text: 'Say what items you want.  \nLike: I want 3 apple.',
         image: new Image({
             url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FDialog%2Ffood.png?alt=media&token=e7e99a23-5f8c-42ca-a7c5-9bf1059d2a4e',
             alt: 'Supermarket'
         }),
         display: 'WHITE'
     }));
-    conv.ask(new Suggestions('Dialog', 'Main menu'));
+    conv.ask(new Suggestions('Dialog', 'Supermarket', 'Main menu'));
 
 });
 
