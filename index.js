@@ -643,7 +643,7 @@ app.intent('Dialog', (conv) => {
         }),
         display: 'WHITE'
     }));
-    conv.ask(new Suggestions('Tickets', 'Restaurant', 'Supermarket', '-> Back'));
+    conv.ask(new Suggestions('Tickets', 'Restaurant', 'E-Shop', '-> Back'));
 
 });
 
@@ -655,20 +655,22 @@ app.intent('E-Shop', (conv) => {
             ssml = '<speak>' +
                 '<audio src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>' +
                 '<break time="200ms"/>' +
-                'Welcome to dialog exercise' +
+                'Welcome to Supermarket' +
                 '<break time="500ms"/>' +
-                'Here you can practice to do different tasks.' + 
-                '<break time="500ms"/>' +
-                'Choose the category you want to practise.' +
+                'Here you can practice to buy many everyday items.' + 
+                '<break time="300ms"/>' +
+                'You can say like:' +
+                '<break time="200ms"/>' +
+                'I want water and bread, please?' +
                 '</speak>';
     conv.ask(ssml);
     conv.ask(new BasicCard({
-        title: 'Dialog exercise',
-        subtitle: 'What do you want to practice?',
-        text: 'Choose the category.',
+        title: 'Supermarket exercise',
+        subtitle: 'What do you want?',
+        text: 'Say what items you want.  \nLike: I want 3 apple, please.',
         image: new Image({
-            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FDialog%2Fdialog.png?alt=media&token=b326e9e4-a338-4e2d-95fe-25e023dddcd9',
-            alt: 'Dialog'
+            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FDialog%2Ffood.png?alt=media&token=e7e99a23-5f8c-42ca-a7c5-9bf1059d2a4e',
+            alt: 'Supermarket'
         }),
         display: 'WHITE'
     }));
