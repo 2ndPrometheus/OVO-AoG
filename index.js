@@ -620,30 +620,6 @@ app.intent('Provides-Answer-Second', async (conv) => {
     }
 });
 
-// Dialog Intent
-app.intent('Dialog', (conv) => {
-    let ssml;
-            ssml = '<speak>' +
-                '<audio src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>' +
-                '<break time="300ms"/>' +
-                'Welcome to e-shop to practice dialogues!' +
-                '<break time="500ms"/>' +
-                'Here you can buy many items <break time="200ms"/>' +
-                '</speak>';
-    conv.ask(ssml);
-    conv.ask(new BasicCard({
-        text: 'Say what you want or choose the category',
-        subtitle: 'How can I help you?',
-        title: 'eSHOP',
-        image: new Image({
-            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FDialog%2Fdialog.png?alt=media&token=b326e9e4-a338-4e2d-95fe-25e023dddcd9',
-            alt: 'eShop'
-        }),
-        display: 'WHITE'
-    }));
-    conv.ask(new Suggestions('Tickets', 'Restaurant', 'Menu'));
-});
-
 // E Shop intent
 app.intent('E-Shop', (conv) => {
     conv.contexts.set('e-shop-conv', 1);
@@ -652,22 +628,22 @@ app.intent('E-Shop', (conv) => {
             ssml = '<speak>' +
                 '<audio src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>' +
                 '<break time="300ms"/>' +
-                'Wellcome to eShop!' +
+                'Welcome to dialog exercise' +
                 '<break time="500ms"/>' +
-                'Here you can buy many items <break time="200ms"/>' +
+                'Here you can practice to do different tasks.' +
                 '</speak>';
     conv.ask(ssml);
     conv.ask(new BasicCard({
-        text: 'Say what you want or choose the category',
-        subtitle: 'How can I help you?',
-        title: 'eSHOP',
+        title: 'Dialog exercise',
+        subtitle: 'What do you want to practice?',
+        text: 'Choose the category.',
         image: new Image({
             url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/quiz_images%2FDialog%2Fdialog.png?alt=media&token=b326e9e4-a338-4e2d-95fe-25e023dddcd9',
-            alt: 'eShop'
+            alt: 'Dialog'
         }),
         display: 'WHITE'
     }));
-    conv.ask(new Suggestions('Tickets', 'Restaurant', 'Menu'));
+    conv.ask(new Suggestions('Tickets', 'Restaurant', 'Supermarket', '-> Back'));
 
 });
 
