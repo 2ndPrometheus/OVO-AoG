@@ -23,7 +23,7 @@ app.catch((conv, error) => {
     console.error('Error at conv catch --> ', error);
     //conv.close('Oh Dear, I encountered a glitch. Please try again after some time.');
     conv.ask('Oh Dear, I encountered conv catch error.');
-    //conv.ask(new Suggestions('Names'));
+    conv.ask(new Suggestions('Names'));
 });
 
 // Fallback
@@ -99,9 +99,8 @@ app.intent('Provides-Name', async (conv, params) => {
         conv.ask(new Suggestions('Memo', 'Consepts', 'Clock', 'Math', 'Dialog'));
 
     } else {
-        
-        conv.close(`Sorry ${studentName}, I didt find your name from the list. Try again.`);
         conv.ask(new Suggestions(names.slice(0, 8)));
+        conv.close(`Sorry ${studentName}, I didt find your name from the list. Try again.`);
         //conv.ask(`Sorry ${studentName}, I didt recognice that name, please choose one on the list.`);
     }
 });
