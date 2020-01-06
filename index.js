@@ -99,9 +99,10 @@ app.intent('Provides-Name', async (conv, params) => {
         conv.ask(new Suggestions('Memo', 'Consepts', 'Clock', 'Math', 'Dialog'));
 
     } else {
-        conv.ask(new Suggestions(names.slice(0, 8)));
-        conv.close(`Sorry ${studentName}, I didt find your name from the list. Try again.`);
+        
+        conv.close(`Sorry ${studentName}, I didt find your name from the list. Go back to names and try again.`);
         //conv.ask(`Sorry ${studentName}, I didt recognice that name, please choose one on the list.`);
+        conv.ask(new Suggestions(names.slice(0, 8))); 
     }
 });
 
