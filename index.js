@@ -22,7 +22,17 @@ const app = dialogflow({
 app.catch((conv, error) => {
     console.error('Error at conv catch --> ', error);
     //conv.close('Oh Dear, I encountered a glitch. Please try again after some time.');
-    conv.ask('Oh Dear, I encountered conv catch error.');
+    conv.ask('I couldnt connect the word you say in the right context. Please, go back and try again.');
+    conv.ask(new BasicCard({
+        title: 'Conv catch error',
+        subtitle: 'Please, go back and try again.',
+        text: 'I couldnt connect the word you say in the right context.',
+        image: new Image({
+            url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2Fwrong_answer_1.gif?alt=media&token=518d78ae-2d91-4653-aba4-1a5023739a99',
+            alt: 'error'
+        }),
+        display: 'WHITE'
+    }));
     conv.ask(new Suggestions('Names'));
 });
 
