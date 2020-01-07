@@ -26,14 +26,14 @@ app.catch((conv, error) => {
     conv.ask(new BasicCard({
         title: 'Conv catch error',
         subtitle: 'Please, go back and try again.',
-        text: 'I couldnt connect the word you say in the right context.',
+        text: 'I couldnt connect the word you say to the right context.',
         image: new Image({
             url: 'https://firebasestorage.googleapis.com/v0/b/ovobot-quiz.appspot.com/o/program%20images%2Fwrong_answer_1.gif?alt=media&token=518d78ae-2d91-4653-aba4-1a5023739a99',
             alt: 'error'
         }),
         display: 'WHITE'
     }));
-    conv.ask(new Suggestions('Names'));
+    conv.ask(new Suggestions('Names', 'Menu'));
 });
 
 // Fallback
@@ -644,7 +644,7 @@ app.intent('Dialog', (conv) => {
                 '</speak>';
     conv.ask(ssml);
     conv.ask(new BasicCard({
-        title: 'DIALOG EXERCISE',
+        title: 'Dialog exercise',
         subtitle: 'What do you want to practice?',
         text: 'Choose the category.',
         image: new Image({
